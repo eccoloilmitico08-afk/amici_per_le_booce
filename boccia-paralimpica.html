@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boccia Paralimpica - Amici per le Bocce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 3rem;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav li {
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 1.3rem;
+            margin-bottom: 4rem;
+            font-weight: bold;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Introduction */
+        .hero-intro {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+
+        .hero-intro p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Cos'è la Boccia */
+        .cos-e-boccia {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .boccia-image {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .boccia-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .boccia-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .boccia-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Categorie Grid */
+        .categorie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .categoria-card {
+            background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #1e3c72;
+            transition: transform 0.3s;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .categoria-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .categoria-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Regole Section */
+        .regole-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .regola-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .regola-card h4 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        /* Campo di Gioco */
+        .campo-gioco {
+            text-align: center;
+        }
+
+        .campo-diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .campo-diagram img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Benefici */
+        .benefici-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .beneficio-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #1e3c72;
+        }
+
+        .beneficio-card h4 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        /* Come Iniziare */
+        .come-iniziare {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .passi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .passo-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .passo-card .numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            margin: 1rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .faq-item h4 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Video Section */
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: #000;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .main-content {
+                margin-top: 140px;
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .cos-e-boccia {
+                grid-template-columns: 1fr;
+            }
+
+            .categorie-grid,
+            .regole-grid,
+            .benefici-grid,
+            .passi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/immagini/logo/logo.jpg" alt="Amici per le Bocce">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="boccia-paralimpica.html">Boccia Paralimpica</a></li>
+                    <li><a href="chi-siamo.html#presentazioni-atleti">I Nostri Atleti</a></li>
+                    <li><a href="risultati.html">Risultati</a></li>
+                    <li><a href="galleria.html">Galleria</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="sponsor.html">Sponsor</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <h1 class="page-title">Boccia Paralimpica</h1>
+        <div class="page-subtitle">Scopri lo sport di precisione e strategia praticato dai nostri atleti</div>
+
+        <!-- Hero Introduction -->
+        <section class="hero-intro">
+            <h2>Cos'è la Boccia Paralimpica?</h2>
+            <p>
+                La Boccia è uno sport paralimpico di precisione e strategia, progettato specificamente per atleti con disabilità motorie gravi. 
+                È l'unica disciplina paralimpica senza corrispettivo olimpico e richiede abilità tattiche eccezionali, concentrazione e controllo dei movimenti.
+            </p>
+        </section>
+
+        <!-- Video Section -->
+        <section class="content-section">
+            <h2 class="section-title">Guarda la Boccia in Azione</h2>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video controls poster="assets/immagini/campo/campo-bocce.jpg">
+                        <source src="assets/immagini/galleria/dimostrazione-boccia.mp4" type="video/mp4">
+                        Il tuo browser non supporta il tag video.
+                    </video>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; color: #666; font-style: italic;">
+                    Dimostrazione pratica della Boccia Paralimpica - I nostri atleti in azione
+                </p>
+            </div>
+        </section>
+
+        <!-- Cos'è la Boccia -->
+        <section class="content-section">
+            <h2 class="section-title">Lo Sport della Precisione</h2>
+            <div class="cos-e-boccia">
+                <div class="boccia-text">
+                    <p>
+                        La Boccia viene praticata su un campo rettangolare da atleti in carrozzina che lanciano palline colorate cercando di avvicinarsi 
+                        il più possibile a una pallina bianca chiamata "pallino" o "jack".
+                    </p>
+                    <p>
+                        Ogni partita è una sfida mentale che combina elementi delle bocce tradizionali, del biliardo e degli scacchi. 
+                        Gli atleti devono calcolare traiettorie, prevedere le mosse degli avversari e sviluppare strategie complesse.
+                    </p>
+                    <p>
+                        La Boccia è inclusa nel programma paralimpico dai Giochi di New York/Stoke Mandeville 1984 ed è governata a livello internazionale 
+                        dalla BISFed (Boccia International Sports Federation).
+                    </p>
+                </div>
+                <div class="boccia-image">
+                    <img src="assets/immagini/campo/campo-bocce.jpg" alt="Campo di Boccia Paralimpica">
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorie -->
+        <section class="content-section">
+            <h2 class="section-title">Le Categorie</h2>
+            <div class="categorie-grid">
+                <div class="categoria-card">
+                    <div class="icon">BC1</div>
+                    <h3>BC1</h3>
+                    <p>Atleti con paralisi cerebrale che lanciano la palla con mano o piede. Possono avere un assistente che sistema la carrozzina e consegna la palla.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">BC2</div>
+                    <h3>BC2</h3>
+                    <p>Atleti con paralisi cerebrale che lanciano la palla con la mano. Non possono avere assistenza durante la partita.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">BC3</div>
+                    <h3>BC3</h3>
+                    <p>Atleti con disabilità motorie molto gravi che utilizzano una rampa e possono essere assistiti da un aiutante.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">BC4</div>
+                    <h3>BC4</h3>
+                    <p>Atleti con disabilità motorie non derivanti da paralisi cerebrale che lanciano la palla con la mano.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">BC5</div>
+                    <h3>BC5</h3>
+                    <p>Atleti con disabilità motorie che lanciano la palla con la mano, categoria introdotta recentemente nel regolamento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regole Base -->
+        <section class="content-section">
+            <h2 class="section-title">Regole Base del Gioco</h2>
+            <div class="regole-grid">
+                <div class="regola-card">
+                    <h4>🎯 L'Obiettivo</h4>
+                    <p>Avvicinare il maggior numero di palline colorate al pallino bianco accumulando punti.</p>
+                </div>
+                <div class="regola-card">
+                    <h4>⏱️ Durata Partita</h4>
+                    <p>4 ends (manches) per le fasi a gironi, 6 ends per le fasi finali. 6 palline per atleta/coppia per end.</p>
+                </div>
+                <div class="regola-card">
+                    <h4>📏 Campo di Gioco</h4>
+                    <p>Campo rettangolare 12.5m x 6m con superfici piane e uniformes. Zone di lancio definite.</p>
+                </div>
+                <div class="regola-card">
+                    <h4>🏅 Assegnazione Punti</h4>
+                    <p>1 punto per ogni pallina più vicina al pallino rispetto alla pallina più vicina dell'avversario.</p>
+                </div>
+                <div class="regola-card">
+                    <h4>🎲 Inizio Gioco</h4>
+                    <p>Sorteggio per il primo lancio del pallino. L'atleta che vince l'end lancia il pallino nell'end successivo.</p>
+                </div>
+                <div class="regola-card">
+                    <h4>⚖️ Parità</h4>
+                    <p>In caso di parità, si gioca un end supplementare (tie-break) per determinare il vincitore.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campo di Gioco -->
+        <section class="content-section campo-gioco">
+            <h2 class="section-title">Il Campo di Gioco</h2>
+            <div class="campo-diagram">
+                <img src="assets/immagini/campo/campo-bocce.jpg" alt="Diagramma campo Boccia Paralimpica">
+            </div>
+            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                <p><strong>Misure standard:</strong> 12.5 metri di lunghezza × 6 metri di larghezza</p>
+                <p><strong>Superficie:</strong> Liscia e piana, solitamente in legno o materiali sintetici</p>
+                <p><strong>Zone:</strong> Area di gioco principale, zone di lancio, area del pallino</p>
+                <p><strong>Segnalazioni:</strong> Linee di delimitazione e marcature per il posizionamento</p>
+            </div>
+        </section>
+
+        <!-- Benefici -->
+        <section class="content-section">
+            <h2 class="section-title">Benefici della Boccia</h2>
+            <div class="benefici-grid">
+                <div class="beneficio-card">
+                    <h4>💪 Sviluppo Fisico</h4>
+                    <p>Migliora il controllo motorio, la coordinazione e la forza muscolare</p>
+                </div>
+                <div class="beneficio-card">
+                    <h4>🧠 Sviluppo Mentale</h4>
+                    <p>Allena concentrazione, pensiero strategico e capacità decisionale</p>
+                </div>
+                <div class="beneficio-card">
+                    <h4>🤝 Inclusione Sociale</h4>
+                    <p>Favorisce l'integrazione e la socializzazione tra atleti</p>
+                </div>
+                <div class="beneficio-card">
+                    <h4>🎯 Autostima</h4>
+                    <p>Aumenta la fiducia in sé stessi attraverso il raggiungimento di obiettivi</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Come Iniziare -->
+        <section class="come-iniziare">
+            <h2 style="margin-bottom: 1rem; color: #ffd700;">Come Iniziare a Praticare</h2>
+            <div class="passi-grid">
+                <div class="passo-card">
+                    <div class="numero">1</div>
+                    <h4>Contattaci</h4>
+                    <p>Visita la nostra associazione per una prova gratuita</p>
+                </div>
+                <div class="passo-card">
+                    <div class="numero">2</div>
+                    <h4>Valutazione</h4>
+                    <p>I nostri tecnici ti aiuteranno a trovare la categoria più adatta</p>
+                </div>
+                <div class="passo-card">
+                    <div class="numero">3</div>
+                    <h4>Allenamento</h4>
+                    <p>Inizia il percorso di apprendimento con i nostri istruttori</p>
+                </div>
+                <div class="passo-card">
+                    <div class="numero">4</div>
+                    <h4>Gare</h4>
+                    <p>Partecipa alle competizioni e mettiti alla prova</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="content-section">
+            <h2 class="section-title">Domande Frequenti</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Chi può praticare la Boccia Paralimpica?</h4>
+                    <p>La Boccia è aperta a atleti con disabilità motorie gravi, inclusi quelli con paralisi cerebrale, distrofia muscolare, lesioni midollari e altre condizioni che limitano significativamente la mobilità.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Serve attrezzatura speciale?</h4>
+                    <p>L'attrezzatura base include le palline da boccia (6 rosse e 6 blu per squadra), il pallino bianco e eventualmente rampe di lancio per atleti della categoria BC3.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Quanto costa praticare questo sport?</h4>
+                    <p>Presso la nostra associazione offriamo prove gratuite e percorsi accessibili. Contattaci per informazioni sui costi e le agevolazioni disponibili.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Posso assistere a un allenamento?</h4>
+                    <p>Certo! Siamo sempre felici di accogliere nuovi interessati. Contattaci per organizzare una visita durante i nostri orari di allenamento.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Amici per le Bocce</h3>
+            <p>Associazione per la promozione della Boccia Paralimpica</p>
+            
+            <div class="footer-links">
+                <a href="contatti.html">Contatti</a>
+                <a href="sponsor.html">Diventa Sponsor</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            
+            <p>&copy; 2024 Amici per le Bocce - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30,60,114,0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
+            }
+        });
+    </script>
+</body>
+</html>
