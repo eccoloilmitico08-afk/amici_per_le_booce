@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultati 2025 - Amici per le Bocce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 3rem;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav li {
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            font-weight: bold;
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1e3c72, #ff6b6b);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            width: calc(50% - 40px);
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #1e3c72;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -50px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -50px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-date {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event {
+            color: #1e3c72;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .timeline-result {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .gold {
+            background: linear-gradient(135deg, #fff9c4, #ffeb3b);
+            border-left-color: #ff9800;
+        }
+
+        .silver {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border-left-color: #9e9e9e;
+        }
+
+        .bronze {
+            background: linear-gradient(135deg, #ffe0b2, #ffb74d);
+            border-left-color: #ff6d00;
+        }
+
+        /* Storico Medaglie */
+        .medals-history {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+        }
+
+        .athlete-medals {
+            margin-bottom: 4rem;
+        }
+
+        .athlete-medals:last-child {
+            margin-bottom: 0;
+        }
+
+        .athlete-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .athlete-name {
+            color: #1e3c72;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .athlete-category {
+            color: #ff6b6b;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .medals-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .medal-year {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e3f2fd;
+        }
+
+        .medal-year:last-child {
+            border-bottom: none;
+        }
+
+        .medal-year h3 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .medal-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .medal-item:hover {
+            transform: translateX(10px);
+        }
+
+        .medal-item.gold {
+            background: linear-gradient(135deg, #fff9c4, #ffeb3b);
+            border-left: 4px solid #ff9800;
+        }
+
+        .medal-item.silver {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border-left: 4px solid #9e9e9e;
+        }
+
+        .medal-item.bronze {
+            background: linear-gradient(135deg, #ffe0b2, #ffb74d);
+            border-left: 4px solid #ff6d00;
+        }
+
+        .medal-item.international {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #1e3c72;
+        }
+
+        .medal-item.participation {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 4px solid #6c757d;
+        }
+
+        .medal-icon {
+            font-size: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .medal-details {
+            flex-grow: 1;
+        }
+
+        .medal-details strong {
+            color: #1e3c72;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .medal-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .medal-achievement {
+            background: #1e3c72;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .medal-note {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Next Goals */
+        .next-goals {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .goals-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .goals-list li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .main-content {
+                margin-top: 140px;
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .medal-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/immagini/logo/logo.jpg" alt="Amici per le Bocce">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="boccia-paralimpica.html">Boccia Paralimpica</a></li>
+                    <li><a href="chi-siamo.html#presentazioni-atleti">I Nostri Atleti</a></li>
+                    <li><a href="risultati.html">Risultati</a></li>
+                    <li><a href="galleria.html">Galleria</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="sponsor.html">Sponsor</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <h1 class="page-title">Risultati 2025</h1>
+        <div class="page-subtitle">Un anno di successi straordinari</div>
+
+        <!-- Hero Stats -->
+        <section class="hero-stats">
+            <h2 style="margin-bottom: 1rem; color: #ffd700;">Il Nostro Palmares</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <div class="stat-label">Atleti<br>d'Eccellenza</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <div class="stat-label">Medaglie<br>Vinte</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Anni di<br>Storia</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <div class="stat-label">Partecipazione<br>Internazionale</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Eventi -->
+        <section class="timeline-section">
+            <h2 class="section-title">Successi 2025</h2>
+            <div class="timeline">
+                <!-- Luglio 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Luglio 2025</div>
+                    <div class="timeline-event">Europei Giovanili - Istanbul</div>
+                    <div class="timeline-result">
+                        <strong>Vincenzo</strong> - 6° Classificato nella competizione internazionale
+                    </div>
+                    <p>Prima esperienza internazionale per il nostro atleta, fondamentale per la crescita agonistica.</p>
+                </div>
+
+                <!-- Settembre 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">10-14 Settembre 2025</div>
+                    <div class="timeline-event">Campionato Italiano - Lecce</div>
+                    <div class="timeline-result gold">
+                        🥇 <strong>Vincenzo</strong> - Campione Nazionale Categoria BC2
+                    </div>
+                    <div class="timeline-result silver">
+                        🥈 <strong>Aurora</strong> - Vice Campionessa Italiana Categoria BC5
+                    </div>
+                    <p>Doppio podio storico per l'associazione nel campionato nazionale.</p>
+                </div>
+
+                <!-- Ottobre 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">25 Ottobre 2025</div>
+                    <div class="timeline-event">Gara Interregionale - Mairano (BS)</div>
+                    <div class="timeline-result gold">
+                        🥇 <strong>Vincenzo</strong> - 1° Classificato Categoria BC2
+                    </div>
+                    <div class="timeline-result bronze">
+                        🥉 <strong>Aurora</strong> - 3° Classificata Categoria BC5
+                    </div>
+                    <p>Doppio podio nella competizione interregionale.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Storico Completo Medaglie -->
+        <section class="medals-history">
+            <h2 class="section-title">Storico Completo Atleti</h2>
+            
+            <!-- Vincenzo -->
+            <div class="athlete-medals">
+                <div class="athlete-header">
+                    <div class="athlete-name">Vincenzo</div>
+                    <div class="athlete-category">Categoria BC2 - Campione Nazionale 2025</div>
+                </div>
+                
+                <div class="medals-timeline">
+                    <!-- 2025 -->
+                    <div class="medal-year">
+                        <h3>2025 - L'Anno del Campione</h3>
+                        
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificato</strong>
+                                <div>Campionato Italiano - Lecce</div>
+                                <div class="medal-date">10-14 Settembre 2025</div>
+                                <div class="medal-achievement">Titolo di Campione Nazionale 2025</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificato</strong>
+                                <div>Gara Interregionale - Mairano (BS)</div>
+                                <div class="medal-date">25 Ottobre 2025</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item bronze">
+                            <div class="medal-icon">🥉</div>
+                            <div class="medal-details">
+                                <strong>3° Classificato</strong>
+                                <div>Torneo Nazionale - Padova</div>
+                                <div class="medal-date">10 Maggio 2025</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item international">
+                            <div class="medal-icon">🌍</div>
+                            <div class="medal-details">
+                                <strong>6° Classificato</strong>
+                                <div>Europei Giovanili - Istanbul, Turchia</div>
+                                <div class="medal-date">21-28 Luglio 2025</div>
+                                <div class="medal-achievement">Prima esperienza internazionale</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="medal-year">
+                        <h3>2024 - L'Anno della Crescita</h3>
+                        
+                        <div class="medal-item silver">
+                            <div class="medal-icon">🥈</div>
+                            <div class="medal-details">
+                                <strong>2° Classificato</strong>
+                                <div>Campionati Italiani - Chianciano Terme</div>
+                                <div class="medal-date">Novembre 2024</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificato</strong>
+                                <div>Gara Interregionale - Brescia</div>
+                                <div class="medal-date">Settembre 2024</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Gara Nazionale - Lecce</div>
+                                <div class="medal-date">Agosto 2024</div>
+                                <div class="medal-note">Esperienza formativa</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Gara Interregionale - Varese</div>
+                                <div class="medal-date">Maggio 2024</div>
+                                <div class="medal-note">Esperienza formativa</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Gara Nazionale - Padova</div>
+                                <div class="medal-date">Maggio 2024</div>
+                                <div class="medal-note">Esperienza formativa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aurora -->
+            <div class="athlete-medals">
+                <div class="athlete-header">
+                    <div class="athlete-name">Aurora</div>
+                    <div class="athlete-category">Categoria BC5 - Vice Campionessa Nazionale 2025</div>
+                </div>
+                
+                <div class="medals-timeline">
+                    <!-- 2025 -->
+                    <div class="medal-year">
+                        <h3>2025 - L'Anno della Vicecampionessa</h3>
+                        
+                        <div class="medal-item silver">
+                            <div class="medal-icon">🥈</div>
+                            <div class="medal-details">
+                                <strong>2° Classificata</strong>
+                                <div>Campionato Italiano - Lecce</div>
+                                <div class="medal-date">10-14 Settembre 2025</div>
+                                <div class="medal-achievement">Titolo di Vice Campionessa Nazionale 2025</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item bronze">
+                            <div class="medal-icon">🥉</div>
+                            <div class="medal-details">
+                                <strong>3° Classificata</strong>
+                                <div>Gara Interregionale - Mairano (BS)</div>
+                                <div class="medal-date">Ottobre 2025</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item bronze">
+                            <div class="medal-icon">🥉</div>
+                            <div class="medal-details">
+                                <strong>3° Classificata</strong>
+                                <div>Torneo Nazionale - Padova</div>
+                                <div class="medal-date">10-11 Maggio 2025</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="medal-year">
+                        <h3>2024 - L'Anno della Conferma</h3>
+                        
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificata</strong>
+                                <div>Gara - Ottobre 2024</div>
+                                <div class="medal-date">Ottobre 2024</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificata</strong>
+                                <div>Torneo Nazionale - Lecce</div>
+                                <div class="medal-date">Agosto 2024</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item silver">
+                            <div class="medal-icon">🥈</div>
+                            <div class="medal-details">
+                                <strong>2° Classificata</strong>
+                                <div>Torneo - Brescia</div>
+                                <div class="medal-date">Maggio 2024</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Gara Interregionale - Varese</div>
+                                <div class="medal-date">Maggio 2024</div>
+                                <div class="medal-note">Esperienza formativa</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Torneo Nazionale - Padova</div>
+                                <div class="medal-date">Maggio 2024</div>
+                                <div class="medal-note">Esperienza formativa</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2023 -->
+                    <div class="medal-year">
+                        <h3>2023 - Gli Inizi Promettenti</h3>
+                        
+                        <div class="medal-item gold">
+                            <div class="medal-icon">🥇</div>
+                            <div class="medal-details">
+                                <strong>1° Classificata</strong>
+                                <div>Gara Nazionale - Varese</div>
+                                <div class="medal-date">Maggio 2023</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item bronze">
+                            <div class="medal-icon">🥉</div>
+                            <div class="medal-details">
+                                <strong>3° Classificata</strong>
+                                <div>Campionati Italiani - Campobasso</div>
+                                <div class="medal-date">Novembre 2023</div>
+                            </div>
+                        </div>
+
+                        <div class="medal-item participation">
+                            <div class="medal-icon">🎯</div>
+                            <div class="medal-details">
+                                <strong>Partecipazione</strong>
+                                <div>Riconoscenza Campioni della Leonessa</div>
+                                <div class="medal-date">Dicembre 2023</div>
+                                <div class="medal-note">Evento speciale</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prossimi Obiettivi -->
+        <section class="next-goals">
+            <h2 style="margin-bottom: 1rem; color: #ffd700;">Prossimi Obiettivi</h2>
+            <ul class="goals-list">
+                <li>🥇 Qualificazione ai Campionati Europei 2026</li>
+                <li>🌍 Partecipazione a competizioni internazionali</li>
+                <li>📈 Sviluppo di nuovi talenti nell'associazione</li>
+                <li>🤝 Ampliamento del team tecnico e di supporto</li>
+                <li>🎯 Consolidamento nel circuito nazionale</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Amici per le Bocce</h3>
+            <p>Associazione per la promozione della Boccia Paralimpica</p>
+            
+            <div class="footer-links">
+                <a href="contatti.html">Contatti</a>
+                <a href="sponsor.html">Diventa Sponsor</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            
+            <p>&copy; 2024 Amici per le Bocce - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30,60,114,0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
+            }
+        });
+
+        // Timeline animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-50px)';
+            item.style.transition = 'all 0.6s ease-out';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
