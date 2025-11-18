@@ -1,0 +1,420 @@
+<!-- <!DOCTYPE html> -->
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amici per le Bocce - Boccia Paralimpica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 3rem;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav li {
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,60,114,0.7), rgba(42,82,152,0.7)), url('assets/immagini/background/background-titolo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Highlights Grid */
+        .highlights {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+            font-size: 2.5rem;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e3f2fd;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .highlight-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-button {
+            background: #1e3c72;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .card-button:hover {
+            background: #2a5298;
+        }
+
+        /* Atleti Preview */
+        .atleti-preview {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .atleti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .atleta-preview {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .atleta-preview h4 {
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-container {
+                gap: 2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+                flex-wrap: wrap;
+            }
+
+            nav li {
+                white-space: normal;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/immagini/logo/logo.jpg" alt="Amici per le Bocce">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="boccia-paralimpica.html">Boccia Paralimpica</a></li>
+                    <!-- MODIFICATO: Link a sezione specifica di Chi Siamo -->
+                    <li><a href="chi-siamo.html#presentazioni-atleti">I Nostri Atleti</a></li>
+                    <li><a href="risultati.html">Risultati</a></li>
+                    <li><a href="galleria.html">Galleria</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="sponsor.html">Sponsor</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Amici per le Bocce</h1>
+            <p>Promuoviamo la Boccia Paralimpica</p>
+            <a href="chi-siamo.html" class="cta-button">Scopri di Più</a>
+        </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="highlights">
+        <h2 class="section-title">Il Nostro Impegno</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <h3>🏆 Risultati 2025</h3>
+                <p>Scopri i fantastici risultati dei nostri atleti Aurora e Vincenzo nelle competizioni nazionali e internazionali</p>
+                <a href="risultati.html" class="card-button">Vedi Risultati</a>
+            </div>
+            
+            <div class="highlight-card">
+                <h3>⭐ I Nostri Atleti</h3>
+                <p>Conosci Aurora e Vincenzo, i nostri campioni che portano alto il nome dell'associazione</p>
+                <!-- MODIFICATO: Link a sezione specifica di Chi Siamo -->
+                <a href="chi-siamo.html#presentazioni-atleti" class="card-button">Conosci gli Atleti</a>
+            </div>
+            
+            <div class="highlight-card">
+                <h3>🤝 Diventa Sponsor</h3>
+                <p>Sostieni i nostri atleti e aiutaci a promuovere la boccia paralimpica in Italia</p>
+                <a href="sponsor.html" class="card-button">Sostienici</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atleti Preview -->
+    <section class="atleti-preview">
+        <h2 style="margin-bottom: 1rem;">I Nostri Campioni</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem;">Scopri i talenti che rappresentano la nostra associazione</p>
+        
+        <div class="atleti-grid">
+            <div class="atleta-preview">
+                <h4>Vincenzo</h4>
+                <p>Categoria BC2</p>
+                <p>Campione Nazionale 2025</p>
+            </div>
+            <div class="atleta-preview">
+                <h4>Aurora</h4>
+                <p>Categoria BC5</p>
+                <p>Vice Campionessa Italiana</p>
+            </div>
+        </div>
+        
+        <!-- MODIFICATO: Link a sezione specifica di Chi Siamo -->
+        <a href="chi-siamo.html#presentazioni-atleti" class="cta-button" style="margin-top: 3rem;">Scopri Tutti gli Atleti</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Amici per le Bocce</h3>
+            <p>Associazione per la promozione della Boccia Paralimpica</p>
+            
+            <div class="footer-links">
+                <a href="contatti.html">Contatti</a>
+                <a href="sponsor.html">Diventa Sponsor</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            
+            <p>&copy; 2024 Amici per le Bocce - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll per anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30,60,114,0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
+            }
+        });
+    </script>
+</body>
+</html>
